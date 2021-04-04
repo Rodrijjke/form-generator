@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form by JSON</title>
+</head>
+<body>
+<h1>Example of using JSON form generator</h1>
+<div id="container1"></div>
+<div id="container2"></div>
+<script type="module">
+    import {generateFormNodeByJson} from "./form_generate/formByJson.js";
+    import {form1Json, form2Json} from "./forms.js";
+    createFormSafe(form1Json, "container1");
+    createFormSafe(form2Json, "container2");
+
+    function createFormSafe(json, parentNodeId) {
+        try {
+            const form = generateFormNodeByJson(json);
+            document.getElementById(parentNodeId).appendChild(form);
+        }
+        catch (e) {
+            console.error(`Failed to generate form. ${e}`);
+        }
+    }
+</script>
+</body>
+</html>
